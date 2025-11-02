@@ -9,13 +9,13 @@ namespace chr {
 			throw std::runtime_error("计算时出现零操作数运算符");
 		}
 		else if (operands == 1) {
-			double left = operand_stack.top().value();
+			long double left = operand_stack.top().value();
 			operand_stack.top().rvalue() = op.apply(left, 0);
 		}
 		else if (operands == 2) {
-			double right = operand_stack.top().value();
+			long double right = operand_stack.top().value();
 			operand_stack.pop();
-			double left = operand_stack.top().value();
+			long double left = operand_stack.top().value();
 			operand_stack.top().rvalue() = op.apply(left, right);
 		}
 		else {
@@ -77,7 +77,7 @@ namespace chr {
 					}
 				}
 				else {
-					double out = 0;
+					long double out = 0;
 					int radix = 10;
 					std::string integer;
 					std::string fraction;
@@ -118,7 +118,7 @@ namespace chr {
 		}
 	}
 
-	double infix_expression::evaluate()const {
+	long double infix_expression::evaluate()const {
 		std::stack<number_token> operand_stack;
 		std::stack<operator_token*> operator_stack;
 		for (auto token : _content) {
@@ -210,7 +210,7 @@ namespace chr {
 		delete infix_expr;
 	}
 
-	double postfix_expression::evaluate()const {
+	long double postfix_expression::evaluate()const {
 		std::stack<number_token> operand_stack;
 		for (auto token : _content) {
 			if (token->type() == token_number) {

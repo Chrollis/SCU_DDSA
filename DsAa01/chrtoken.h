@@ -59,11 +59,11 @@ namespace chr {
 
 	class number_token :public basic_token {
 	private:
-		double _value;
+		long double _value;
 	public:
 		number_token(double value) :basic_token(token_number), _value(value) {}
-		double value()const { return _value; }
-		double& rvalue() { return _value; }
+		long double value()const { return _value; }
+		long double& rvalue() { return _value; }
 	};
 
 	class operator_token :public basic_token {
@@ -78,7 +78,7 @@ namespace chr {
 		const std::string& str()const { return _str; }
 		byte operand_num()const { return _operand_num; }
 		byte priority()const { return _priority; }
-		virtual double apply(double left, double right)const = 0;
+		virtual long double apply(long double left, long double right)const = 0;
 	};
 
 	constexpr byte priority_max = 255;
@@ -86,7 +86,7 @@ namespace chr {
 	class name ## _token :public operator_token{ \
 	public: \
 		name ## _token() :operator_token(token_ ## name, str, operand_num, priority) {} \
-		double apply(double left, double right)const { realise } \
+		long double apply(long double left, long double right)const { realise } \
 	}
 	__create_operator_token(plus, "+", 2, 1, return left + right;);
 	__create_operator_token(minus, "-", 2, 1, return left - right;);
@@ -99,22 +99,22 @@ namespace chr {
 	__create_operator_token(left_parentheses, "(", 0, 0, return 0;);
 	__create_operator_token(right_parentheses, ")", 0, 0, return 0;);
 	__create_operator_token(factorial, "!", 1, 6, return tgamma(left + 1););
-	__create_operator_token(sine, "sin", 1, priority_max, return sin(left););
-	__create_operator_token(cosine, "cos", 1, priority_max, return cos(left););
-	__create_operator_token(tangent, "tan", 1, priority_max, return tan(left););
-	__create_operator_token(cotangent, "cot", 1, priority_max, return 1.0 / tan(left););
-	__create_operator_token(secant, "sec", 1, priority_max, return 1.0 / cos(left););
-	__create_operator_token(cosecant, "csc", 1, priority_max, return 1.0 / sin(left););
-	__create_operator_token(arcsine, "arcsin", 1, priority_max, return asin(left););
-	__create_operator_token(arccosine, "arccos", 1, priority_max, return acos(left););
-	__create_operator_token(arctangent, "arctan", 1, priority_max, return atan(left););
-	__create_operator_token(arccotangent, "arccot", 1, priority_max, return atan(1.0 / left););
-	__create_operator_token(arcsecant, "arcsec", 1, priority_max, return acos(1.0 / left););
-	__create_operator_token(arccosecant, "arccsc", 1, priority_max, return asin(1.0 / left););
-	__create_operator_token(common_logarithm, "lg", 1, priority_max, return log10(left););
-	__create_operator_token(natural_logarithm, "ln", 1, priority_max, return log(left););
-	__create_operator_token(square_root, "sqrt", 1, priority_max, return sqrt(left););
-	__create_operator_token(cubic_root, "cbrt", 1, priority_max, return cbrt(left););
+	__create_operator_token(sine, "sin", 1, priority_max, return sinl(left););
+	__create_operator_token(cosine, "cos", 1, priority_max, return cosl(left););
+	__create_operator_token(tangent, "tan", 1, priority_max, return tanl(left););
+	__create_operator_token(cotangent, "cot", 1, priority_max, return 1.0 / tanl(left););
+	__create_operator_token(secant, "sec", 1, priority_max, return 1.0 / cosl(left););
+	__create_operator_token(cosecant, "csc", 1, priority_max, return 1.0 / sinl(left););
+	__create_operator_token(arcsine, "arcsin", 1, priority_max, return asinl(left););
+	__create_operator_token(arccosine, "arccos", 1, priority_max, return acosl(left););
+	__create_operator_token(arctangent, "arctan", 1, priority_max, return atanl(left););
+	__create_operator_token(arccotangent, "arccot", 1, priority_max, return atanl(1.0 / left););
+	__create_operator_token(arcsecant, "arcsec", 1, priority_max, return acosl(1.0 / left););
+	__create_operator_token(arccosecant, "arccsc", 1, priority_max, return asinl(1.0 / left););
+	__create_operator_token(common_logarithm, "lg", 1, priority_max, return log10l(left););
+	__create_operator_token(natural_logarithm, "ln", 1, priority_max, return logl(left););
+	__create_operator_token(square_root, "sqrt", 1, priority_max, return sqrtl(left););
+	__create_operator_token(cubic_root, "cbrt", 1, priority_max, return cbrtl(left););
 	__create_operator_token(degree, "deg", 1, priority_max, return left / pi * 180;);
 	__create_operator_token(radian, "rad", 1, priority_max, return left / 180 * pi;);
 
