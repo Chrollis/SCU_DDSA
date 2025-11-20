@@ -136,8 +136,11 @@ bool parse_command(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
     if (argc > 1) {
-        // 命令行模式
-        return parse_command(argc, argv) ? 0 : 1;
+        if (!parse_command(argc, argv)) {
+            return 1; // 如果命令执行失败或用户要求退出，直接返回
+        }
+        // 命令执行成功后，继续进入交互模式而不是退出
+        std::cout << "命令执行完成，进入交互模式...\n";
     }
 
     // 交互模式
