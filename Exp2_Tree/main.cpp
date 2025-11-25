@@ -8,26 +8,26 @@
 using namespace chr;
 
 void print_help() {
-    std::cout << "========== HuffmanÑ¹Ëõ¹¤¾ßÃüÁîĞĞÄ£Ê½ ==========\n";
-    std::cout << "ÃüÁî¸ñÊ½: -command [²ÎÊı]\n";
-    std::cout << "¿ÉÓÃÃüÁî:\n";
-    std::cout << "  -cmp -src <path> [-dir <path>] [-name <name>] [-o <option>]  Ñ¹ËõÎÄ¼ş\n";
-    std::cout << "  -dmp -src <path> [-dir <path>] [-name <name>] [-o <option>]  ½âÑ¹ÎÄ¼ş\n";
-    std::cout << "  -clear                                                        Çå¿ÕÆÁÄ»\n";
-    std::cout << "  -exit                                                         ÍË³ö³ÌĞò\n";
-    std::cout << "  -help                                                         ÏÔÊ¾°ïÖú\n";
-    std::cout << "Ñ¡ÏîËµÃ÷:\n";
-    std::cout << "  -o 1: ÏÔÊ¾Ñ¹ËõÂÊ\n";
-    std::cout << "  -o 2: ÏÔÊ¾HuffmanÊ÷\n";
-    std::cout << "  -o 3: ÏÔÊ¾È«²¿ĞÅÏ¢\n";
-    std::cout << "Ê¾Àı:\n";
+    std::cout << "========== Huffmanå‹ç¼©å·¥å…·å‘½ä»¤è¡Œæ¨¡å¼ ==========\n";
+    std::cout << "å‘½ä»¤æ ¼å¼: -command [å‚æ•°]\n";
+    std::cout << "å¯ç”¨å‘½ä»¤:\n";
+    std::cout << "  -cmp -src <path> [-dir <path>] [-name <name>] [-o <option>]  å‹ç¼©æ–‡ä»¶\n";
+    std::cout << "  -dmp -src <path> [-dir <path>] [-name <name>] [-o <option>]  è§£å‹æ–‡ä»¶\n";
+    std::cout << "  -clear                                                        æ¸…ç©ºå±å¹•\n";
+    std::cout << "  -exit                                                         é€€å‡ºç¨‹åº\n";
+    std::cout << "  -help                                                         æ˜¾ç¤ºå¸®åŠ©\n";
+    std::cout << "é€‰é¡¹è¯´æ˜:\n";
+    std::cout << "  -o 1: æ˜¾ç¤ºå‹ç¼©ç‡\n";
+    std::cout << "  -o 2: æ˜¾ç¤ºHuffmanæ ‘\n";
+    std::cout << "  -o 3: æ˜¾ç¤ºå…¨éƒ¨ä¿¡æ¯\n";
+    std::cout << "ç¤ºä¾‹:\n";
     std::cout << "  -cmp -src \"test.txt\" -o 3\n";
     std::cout << "  -dmp -src \"test.txt.huff\" -dir \"output\" -name \"decompressed.txt\"\n";
 }
 
 bool parse_command(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cout << "´íÎó: È±ÉÙÃüÁî²ÎÊı\n";
+        std::cout << "é”™è¯¯: ç¼ºå°‘å‘½ä»¤å‚æ•°\n";
         print_help();
         return false;
     }
@@ -43,13 +43,13 @@ bool parse_command(int argc, char* argv[]) {
         return true;
     }
     else if (command == "-exit") {
-        std::cout << "¸ĞĞ»Ê¹ÓÃ£¬ÔÙ¼û!\n";
+        std::cout << "æ„Ÿè°¢ä½¿ç”¨ï¼Œå†è§!\n";
         return false;
     }
     else if (command == "-cmp" || command == "-dmp") {
         bool is_decompress = (command == "-dmp");
 
-        // ½âÎö²ÎÊı
+        // è§£æå‚æ•°
         std::string src_path, dir_path, name;
         int option = 0;
 
@@ -68,23 +68,23 @@ bool parse_command(int argc, char* argv[]) {
             else if (arg == "-o" && i + 1 < argc) {
                 option = std::stoi(argv[++i]);
                 if (option < 1 || option > 3) {
-                    std::cout << "´íÎó: -o ²ÎÊı±ØĞëÊÇ 1, 2 »ò 3\n";
+                    std::cout << "é”™è¯¯: -o å‚æ•°å¿…é¡»æ˜¯ 1, 2 æˆ– 3\n";
                     return false;
                 }
             }
             else {
-                std::cout << "´íÎó: Î´Öª²ÎÊı»òÈ±ÉÙ²ÎÊıÖµ: " << arg << "\n";
+                std::cout << "é”™è¯¯: æœªçŸ¥å‚æ•°æˆ–ç¼ºå°‘å‚æ•°å€¼: " << arg << "\n";
                 return false;
             }
         }
 
-        // ÑéÖ¤±ØÒª²ÎÊı
+        // éªŒè¯å¿…è¦å‚æ•°
         if (src_path.empty()) {
-            std::cout << "´íÎó: ±ØĞëÊ¹ÓÃ -src Ö¸¶¨Ô´ÎÄ¼şÂ·¾¶\n";
+            std::cout << "é”™è¯¯: å¿…é¡»ä½¿ç”¨ -src æŒ‡å®šæºæ–‡ä»¶è·¯å¾„\n";
             return false;
         }
 
-        // ¹¹½¨Ä¿±êÂ·¾¶
+        // æ„å»ºç›®æ ‡è·¯å¾„
         std::filesystem::path src(src_path);
         std::filesystem::path dst_dir = dir_path.empty() ? src.parent_path() : std::filesystem::path(dir_path);
         std::filesystem::path dst_name;
@@ -92,10 +92,10 @@ bool parse_command(int argc, char* argv[]) {
         if (name.empty()) {
             if (is_decompress) {
                 if (src.extension() != ".huff") {
-                    std::cout << "´íÎó: ½âÑ¹ÎÄ¼ş±ØĞëÊÇ .huff ¸ñÊ½\n";
+                    std::cout << "é”™è¯¯: è§£å‹æ–‡ä»¶å¿…é¡»æ˜¯ .huff æ ¼å¼\n";
                     return false;
                 }
-                dst_name = src.stem(); // È¥µô .huff ºó×º
+                dst_name = src.stem(); // å»æ‰ .huff åç¼€
             }
             else {
                 dst_name = src.filename().string() + ".huff";
@@ -107,7 +107,7 @@ bool parse_command(int argc, char* argv[]) {
 
         std::filesystem::path dst_path = dst_dir / dst_name;
 
-        // Ö´ĞĞÑ¹Ëõ»ò½âÑ¹
+        // æ‰§è¡Œå‹ç¼©æˆ–è§£å‹
         bool show_rate = (option & 1) != 0;
         bool show_tree = (option & 2) != 0;
 
@@ -118,15 +118,15 @@ bool parse_command(int argc, char* argv[]) {
             else {
                 compress(src_path, dst_path.string(), show_rate, show_tree);
             }
-            std::cout << "²Ù×÷Íê³É: " << dst_path.string() << "\n";
+            std::cout << "æ“ä½œå®Œæˆ: " << dst_path.string() << "\n";
         }
         catch (const std::exception& e) {
-            std::cout << "²Ù×÷Ê§°Ü: " << e.what() << std::endl;
+            std::cout << "æ“ä½œå¤±è´¥: " << e.what() << std::endl;
             return false;
         }
     }
     else {
-        std::cout << "´íÎó: Î´ÖªÃüÁî: " << command << "\n";
+        std::cout << "é”™è¯¯: æœªçŸ¥å‘½ä»¤: " << command << "\n";
         print_help();
         return false;
     }
@@ -137,15 +137,15 @@ bool parse_command(int argc, char* argv[]) {
 int main(int argc, char* argv[]) {
     if (argc > 1) {
         if (!parse_command(argc, argv)) {
-            return 1; // Èç¹ûÃüÁîÖ´ĞĞÊ§°Ü»òÓÃ»§ÒªÇóÍË³ö£¬Ö±½Ó·µ»Ø
+            return 1; // å¦‚æœå‘½ä»¤æ‰§è¡Œå¤±è´¥æˆ–ç”¨æˆ·è¦æ±‚é€€å‡ºï¼Œç›´æ¥è¿”å›
         }
-        // ÃüÁîÖ´ĞĞ³É¹¦ºó£¬¼ÌĞø½øÈë½»»¥Ä£Ê½¶ø²»ÊÇÍË³ö
-        std::cout << "ÃüÁîÖ´ĞĞÍê³É£¬½øÈë½»»¥Ä£Ê½...\n";
+        // å‘½ä»¤æ‰§è¡ŒæˆåŠŸåï¼Œç»§ç»­è¿›å…¥äº¤äº’æ¨¡å¼è€Œä¸æ˜¯é€€å‡º
+        std::cout << "å‘½ä»¤æ‰§è¡Œå®Œæˆï¼Œè¿›å…¥äº¤äº’æ¨¡å¼...\n";
     }
 
-    // ½»»¥Ä£Ê½
-    std::cout << "»¶Ó­Ê¹ÓÃHuffmanÑ¹Ëõ¹¤¾ß!\n";
-    std::cout << "ÊäÈë -help ²é¿´¿ÉÓÃÃüÁî\n";
+    // äº¤äº’æ¨¡å¼
+    std::cout << "æ¬¢è¿ä½¿ç”¨Huffmanå‹ç¼©å·¥å…·!\n";
+    std::cout << "è¾“å…¥ -help æŸ¥çœ‹å¯ç”¨å‘½ä»¤\n";
 
     std::string input;
     while (true) {
@@ -154,13 +154,13 @@ int main(int argc, char* argv[]) {
 
         if (input.empty()) continue;
 
-        // ½âÎöÊäÈëÎªÃüÁîĞĞ²ÎÊı
+        // è§£æè¾“å…¥ä¸ºå‘½ä»¤è¡Œå‚æ•°
         std::vector<std::string> args;
         std::istringstream iss(input);
         std::string token;
 
         while (iss >> token) {
-            // ´¦ÀíÒıºÅ°üÎ§µÄ²ÎÊı
+            // å¤„ç†å¼•å·åŒ…å›´çš„å‚æ•°
             if (token.front() == '"') {
                 std::string quoted_arg = token;
                 while (quoted_arg.back() != '"' && iss >> token) {
@@ -180,9 +180,9 @@ int main(int argc, char* argv[]) {
 
         if (args.empty()) continue;
 
-        // ×ª»»Îªchar*Êı×é¸ñÊ½
+        // è½¬æ¢ä¸ºchar*æ•°ç»„æ ¼å¼
         std::vector<char*> cargs;
-        cargs.push_back(argv[0]); // ³ÌĞòÃû
+        cargs.push_back(argv[0]); // ç¨‹åºå
         for (auto& arg : args) {
             cargs.push_back(&arg[0]);
         }
@@ -194,6 +194,6 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    std::cout << "¸ĞĞ»Ê¹ÓÃ£¬ÔÙ¼û!\n";
     return 0;
+
 }
