@@ -555,3 +555,4 @@ namespace chr {
 		}
 		return operands.top().number_value();
 	}
+}
